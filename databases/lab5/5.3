@@ -1,0 +1,27 @@
+-- Представление с агрегатными функциями
+CREATE VIEW v_doctor_statistics AS
+SELECT 
+    d.d_name AS doctor_name,
+    d.spec AS specialization,
+    COUNT(a.appointment_id) AS total_appointments,
+    AVG(a.visit_cost) AS avg_visit_cost,
+    SUM(a.visit_cost) AS total_revenue,
+    AVG(CAST(a.satisfaction_rating AS FLOAT)) AS avg_satisfaction,
+    MIN(a.session_date) AS first_appointment,
+    MAX(a.session_date) AS last_appointment
+FROM doctor d
+LEFT JOIN appointment a ON d.doctor_id = a.doctor_id
+GROUP BY d.d_name, d.spec;
+GO
+
+-- Проверка обновляемости
+-- Попробуем обновить данные
+UPDATE v_doctor_statistics 
+SET total_appointments = 100
+WHERE doctor_name = 'Иванов Иван';
+-- Ошибка: невозможно обновить представление с агрегатными функциями
+
+-- Вставка также не сработает
+INSERT INTO v_doctor_statistics (doctor_name, specialization, total_appointments)
+VALUES ('Петров Петр', 'Терапевт', 50);
+-- Ошибка: представление содержит GROUP BY и агрегатные функции
