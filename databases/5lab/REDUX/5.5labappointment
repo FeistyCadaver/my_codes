@@ -1,0 +1,27 @@
+USE bolnica;
+
+GO
+
+CREATE INDEX IX_appointment_patient_mk_number ON appointment(patient_mk_number);
+
+GO
+
+CREATE INDEX IX_appointment_doctor_id ON appoimtment(doctor_id);
+
+GO
+
+CREATE INDEX IX_appointment_diagnosis_id ON appoimtment(diagnosis_id);
+
+GO
+
+CREATE INDEX IX_appointment_session_date ON appoimtment(session_date);
+
+GO
+
+CREATE INDEX IX_appointment_patient_date ON appoimtment(patient_mk, session_date);
+
+GO
+
+CREATE INDEX IX_appointment_doctor_date ON appoimtment(doctor_id, session_date);
+
+GO

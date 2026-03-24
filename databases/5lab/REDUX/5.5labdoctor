@@ -1,0 +1,11 @@
+USE bolnica;
+
+GO
+
+CREATE INDEX IX_doctor_name ON doctor(d_name);
+
+GO
+
+CREATE INDEX IX_doctor_spec ON doctor(spec);
+
+GO

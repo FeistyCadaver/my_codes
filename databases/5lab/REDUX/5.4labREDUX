@@ -1,0 +1,40 @@
+USE bolnica;
+
+GO
+
+CREATE VIEW v_patient_health_profile AS
+WITH patient_visits AS (
+    SELECT p.mk_number
+        ,p.patient_name
+        ,a.session_date
+        ,a.visit_cost
+        ,a.diagnosis_id
+        ,
+        ROW_NUMBER() OVER (PARTITION BY p.mk_number ORDER BY a.session_date) AS visit_number
+    FROM patient p
+    LEFT JOIN appointment a ON p.mk_number = a.patient_mk_number
+        AND YEAR(a.session_date) = YEAR(GETDATE())
+),
+patient_stats AS (
+    SELECT mk_number
+        ,patient_name
+        ,
+        COUNT(session_date) AS visit_count,
+        COUNT(DISTINCT diagnosis_id) AS unique_diagnoses,
+        AVG(visit_cost) AS avg_visit_cost,
+        SUM(CASE WHEN visit_number > 1 THEN 1 ELSE 0 END) AS repeat_visits
+    FROM patient_visits
+    GROUP BY mk_number, patient_name
+)
+SELECT 
+    mk_number,
+    patient_name,
+    visit_count,
+    unique_diagnoses,
+    ISNULL(avg_visit_cost, 0) AS avg_visit_cost,
+    CASE 
+        WHEN visit_count > 0 THEN CAST(100.0 * repeat_visits / visit_count AS DECIMAL(5,2))
+        ELSE 0 
+    END AS repeat_visit_percent
+FROM patient_stats;
+GO

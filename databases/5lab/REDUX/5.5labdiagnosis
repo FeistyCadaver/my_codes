@@ -1,0 +1,7 @@
+USE bolnica;
+
+GO
+
+CREATE INDEX IX_diagnosis_category ON diagnosis(category);
+
+GO

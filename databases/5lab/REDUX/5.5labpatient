@@ -1,0 +1,10 @@
+USE bolnica;
+
+GO 
+
+CREATE INDEX IX_patient_name ON patient(patient_name);
+GO
+
+
+CREATE INDEX IX_patient_date_of_birth ON patient(date_of_birth);
+GO

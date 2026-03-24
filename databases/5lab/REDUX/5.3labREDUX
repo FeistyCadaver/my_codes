@@ -1,0 +1,32 @@
+USE bolnica;
+
+GO
+
+CREATE VIEW v_doctor_workload_detailed AS
+SELECT 
+    d.doctor_id
+    ,d.d_name AS 'ФИО врача'
+    ,d.spec AS 'Специализация'
+    ,d.category AS 'Категория'
+    ,
+    COUNT(a.ticket_id) AS 'Кол-во приёмов за месяц',
+    ISNULL(AVG(a.visit_cost), 0) AS 'Средняя стоимость приёма',
+    CASE 
+        WHEN COUNT(a.ticket_id) > 0 THEN
+            CAST(SUM(CASE 
+                WHEN DATEPART(HOUR, a.session_date) BETWEEN 9 AND 11 
+                  OR DATEPART(HOUR, a.session_date) BETWEEN 15 AND 17 
+                THEN 1 ELSE 0 
+            END) * 100.0 / COUNT(a.ticket_id) AS DECIMAL(5,2))
+        ELSE 0 
+    END AS 'Загруженность в часы пик (%)',
+    CASE 
+        WHEN 20 - COUNT(a.ticket_id) > 0 THEN 20 - COUNT(a.ticket_id)
+        ELSE 0 
+    END AS 'Свободные слоты'
+FROM doctor d
+LEFT JOIN appointment a ON d.doctor_id = a.doctor_id
+    AND MONTH(a.session_date) = MONTH(GETDATE())
+    AND YEAR(a.session_date) = YEAR(GETDATE())
+GROUP BY d.doctor_id, d.d_name, d.spec, d.category;
+GO
