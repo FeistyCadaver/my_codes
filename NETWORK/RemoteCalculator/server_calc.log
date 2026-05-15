@@ -1,0 +1,26 @@
+2026-05-08 09:12:26 | 127.0.0.1 | Expression: CALC 10.5 * 2 | Result: RESULT: 21
+2026-05-08 09:12:55 | 127.0.0.1 | Expression: CALC 10 * 5 | Result: RESULT: 50
+2026-05-08 09:13:23 | 127.0.0.1 | Expression: CALC 1000 * 1000 | Result: RESULT: 1000000
+2026-05-08 09:18:16 | 127.0.0.1 | Expression: CALC 10 - 5 | Result: RESULT: 5
+2026-05-08 09:18:29 | 127.0.0.1 | Expression: CALC 12 - 13 | Result: RESULT: -1
+2026-05-08 09:20:04 | 192.168.126.89 | Expression: CALC 100 - 555 | Result: RESULT: -455
+2026-05-08 09:22:56 | 192.168.126.89 | Expression: CALC 1000 - 122414 | Result: RESULT: -121414
+2026-05-08 09:32:11 | 192.168.126.89 | Expression: CALC 1000 * 1000 | Result: RESULT: 1000000
+2026-05-08 09:48:36 | 192.168.126.141 | Expression: CALC 10 * 5 | Result: RESULT: 50
+2026-05-08 09:48:48 | 127.0.0.1 | Expression: CALC 100 - 222 | Result: RESULT: -122
+2026-05-08 09:49:00 | 192.168.126.141 | Expression: CALC 1000 * 22 | Result: RESULT: 22000
+2026-05-08 09:49:44 | 192.168.126.141 | Expression: CALC 10 * 22222 | Result: RESULT: 222220
+2026-05-08 09:50:18 | 192.168.126.21 | Expression: CALC 12 - 10000 | Result: RESULT: -9988
+2026-05-08 09:50:27 | 192.168.126.21 | Expression: CALC 12 - 10000 | Result: RESULT: -9988
+2026-05-08 09:53:04 | 127.0.0.1 | Expression: 10 * 8 | Result: ERROR: invalid_syntax
+2026-05-08 09:53:04 | 127.0.0.1 | Expression: 10 * 8 | Result: ERROR: invalid_syntax
+2026-05-08 09:53:26 | 127.0.0.1 | Expression: CALC 10 * 8 | Result: RESULT: 80
+2026-05-08 09:53:48 | 127.0.0.1 | Expression: CALC 10 * 8 | Result: RESULT: 80
+2026-05-08 09:53:48 | 127.0.0.1 | Expression: ez | Result: ERROR: invalid_syntax
+2026-05-08 09:58:27 | 127.0.0.1 | Expression: 10009309109 * 3 | Result: ERROR: invalid_syntax
+2026-05-08 09:58:36 | 127.0.0.1 | Expression: CALC 10009309109 * 3 | Result: RESULT: 30027927327
+2026-05-08 10:04:03 | 127.0.0.1 | Expression: CALC 10 * 8 | Result: RESULT: 80
+2026-05-08 10:07:07 | 127.0.0.1 | Expression: CALC 10 * 01230 | Result: RESULT: 12300
+2026-05-08 10:07:11 | 127.0.0.1 | Expression: cxc | Result: ERROR: invalid_syntax
+2026-05-08 10:18:56 | 192.168.126.21 | Expression: CALC 12 * 144 | Result: RESULT: 1728
+2026-05-08 10:22:44 | 127.0.0.1 | Expression: CALC 123 * 938 | Result: RESULT: 115374
